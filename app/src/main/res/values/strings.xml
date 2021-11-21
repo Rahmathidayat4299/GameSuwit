@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">GameSuwit</string>
+    <string name="player1">Player1</string>
+
+    <string name="com">COM</string>
+    <string name="kertas">kertas</string>
+    <string name="batu">batu</string>
+    <string name="guntingCom" />
+    <string name="vs">VS</string>
+    <string name="gunting">gunting</string>
+</resources>
