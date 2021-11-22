@@ -1,25 +1,25 @@
 package com.example.gamesuwit
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
+import androidx.annotation.RequiresApi
 
 class MainActivity : AppCompatActivity() {
-    lateinit var batup1 : ImageView
-    lateinit var guntingp1 : ImageView
-    lateinit var kertasp1 : ImageView
-    lateinit var batuCom : ImageView
-    lateinit var kertasCom : ImageView
-    lateinit var guntingCom : ImageView
-    lateinit var player1 : TextView
-    lateinit var tv_com : TextView
-    lateinit var tv_VS : TextView
-    lateinit var btn_reset : Button
+    private lateinit var batup1: ImageView
+    private lateinit var guntingp1: ImageView
+    private lateinit var kertasp1: ImageView
+    private lateinit var batuCom: ImageView
+    private lateinit var kertasCom: ImageView
+    private lateinit var guntingCom: ImageView
+    private lateinit var tvVS: TextView
+    private lateinit var btnReset: Button
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -31,61 +31,58 @@ class MainActivity : AppCompatActivity() {
         batuCom = findViewById(R.id.batuCom)
         kertasCom = findViewById(R.id.kertasCom)
         guntingCom = findViewById(R.id.guntingCom)
-        tv_VS = findViewById(R.id.tv_VS)
-        btn_reset = findViewById(R.id.btn_reset)
+        tvVS = findViewById(R.id.tvVS)
+        btnReset = findViewById(R.id.btnReset)
 
-
-        val playerSatu = arrayOf(batup1,guntingp1,kertasp1)
-        val com = arrayOf(batuCom,kertasCom,guntingCom)
+        val playerSatu = arrayOf(batup1, guntingp1, kertasp1)
+        val com = arrayOf(batuCom, kertasCom, guntingCom)
 
         playerSatu.forEachIndexed { index, imageView ->
             imageView.setOnClickListener {
-                val pilihanCom= com.random()
-                controlGame(playerSatu[index].contentDescription,pilihanCom.contentDescription)
+                val pilihanCom = com.random()
+                controlGame(playerSatu[index].contentDescription, pilihanCom.contentDescription)
                 pilihanCom.setBackgroundResource(R.drawable.bg_image)
-
-
+                notklikPemain(batup1, guntingp1, kertasp1)
                 playerSatu.forEach {
                     it.setBackgroundResource(android.R.color.transparent)
                 }
-
                 playerSatu[index].setBackgroundResource(R.drawable.bg_image)
-
             }
-
-
-
-
         }
 
-        btn_reset.setOnClickListener {
-            tv_VS.text = "VS"
+        btnReset.setOnClickListener {
             playerSatu.forEach {
                 it.setBackgroundResource(android.R.color.transparent)
             }
-
+            trueklikPemain(batup1, guntingp1, kertasp1)
             com.forEach {
                 it.setBackgroundResource(android.R.color.transparent)
             }
-
         }
-
-
-
     }
 
-    fun controlGame(playerSatu: CharSequence, com: CharSequence){
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun controlGame(playerSatu: CharSequence, com: CharSequence) {
         if (playerSatu == com) {
-            tv_VS.text = "Draw"
+//            tv_VS.text = "Draw"
+            tvVS.setBackgroundResource(R.drawable.bg_draw)
+            tvVS.setText(R.string.Draw)
+            tvVS.setTextColor(getColor(R.color.white))
+
         } else if ((playerSatu == batup1.contentDescription) && (com == guntingCom.contentDescription) || (playerSatu == guntingp1.contentDescription) && (com == kertasCom.contentDescription) || (playerSatu == kertasp1.contentDescription) && (com == batuCom.contentDescription)) {
 
-            tv_VS.text = "Player 1 menang"
 
-
+//            tv_VS.text = "Player 1 menang"
+            tvVS.setBackgroundResource(R.drawable.bg_win)
+            tvVS.setText(R.string.winplayer1)
+            tvVS.setTextColor(getColor(R.color.white))
 
 
         } else {
-            tv_VS.text="COM menang"
+            tvVS.setBackgroundResource(R.drawable.bg_win)
+            tvVS.setText(R.string.comMenang)
+            tvVS.setTextColor(getColor(R.color.white))
 
 
         }
@@ -93,4 +90,21 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
+    private fun notklikPemain(gunting: ImageView, kertas: ImageView, batu: ImageView) {
+        batu.isEnabled = false
+        gunting.isEnabled = false
+        kertas.isEnabled = false
+
+    }
+
+    private fun trueklikPemain(gunting: ImageView, kertas: ImageView, batu: ImageView) {
+        batu.isEnabled = true
+        gunting.isEnabled = true
+        kertas.isEnabled = true
+
+    }
+
 }
+
+

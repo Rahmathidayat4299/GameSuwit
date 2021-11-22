@@ -8,4 +8,9 @@
     <string name="guntingCom" />
     <string name="vs">VS</string>
     <string name="gunting">gunting</string>
+    <string name="winplayer1">player 1 win</string>
+    <string name="Draw">Draw</string>
+
+    <string name="comMenang">comMenang</string>
+
 </resources>

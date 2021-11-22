@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/GameSuwit/app/src/main/res/drawable/bg_draw.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/GameSuwit/app/src/main/res/drawable/bg_image.xml" value="0.1" />
-        <entry key="..\:/Users/ASUS/AndroidStudioProjects/GameSuwit/app/src/main/res/layout/activity_main.xml" value="0.12" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/GameSuwit/app/src/main/res/drawable/bg_win.xml" value="0.13517915309446255" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/GameSuwit/app/src/main/res/layout/activity_main.xml" value="0.1" />
       </map>
     </option>
   </component>
