@@ -1,25 +1,25 @@
 package com.example.gamesuwit
 
-import android.app.Activity
+//import android.app.Activity
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
+//import android.widget.Button
+//import android.widget.ImageView
+//import android.widget.TextView
 import androidx.annotation.RequiresApi
 import com.example.gamesuwit.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), Callback {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var batup1: ImageView
-    private lateinit var guntingp1: ImageView
-    private lateinit var kertasp1: ImageView
-    private lateinit var batuCom: ImageView
-    private lateinit var kertasCom: ImageView
-    private lateinit var guntingCom: ImageView
-    private lateinit var tvVS: TextView
-    private lateinit var btnReset: Button
+//    private lateinit var batup1: ImageView
+//    private lateinit var guntingp1: ImageView
+//    private lateinit var kertasp1: ImageView
+//    private lateinit var batuCom: ImageView
+//    private lateinit var kertasCom: ImageView
+//    private lateinit var guntingCom: ImageView
+//    private lateinit var tvVS: TextView
+//    private lateinit var btnReset: Button
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity(), Callback {
 
                 pilihanCom.setBackgroundResource(R.drawable.bg_image)
 //                notklikPemain(batup1, guntingp1, kertasp1)
-                notClick(false)
+                conditionClick(false)
                 playerSatu.forEach {
                     it.setBackgroundResource(android.R.color.transparent)
                 }
@@ -79,14 +79,26 @@ class MainActivity : AppCompatActivity(), Callback {
 //            trueklikPemain(batup1, guntingp1, kertasp1)
             com.forEach {
                 it.setBackgroundResource(android.R.color.transparent)
-                notClick(true)
+                conditionClick(true)
             }
         }
     }
 
+    private fun conditionClick(isEnable: Boolean) {
+        binding.batup1.isEnabled = isEnable
+        binding.kertasp1.isEnabled = isEnable
+        binding.guntingp1.isEnabled = isEnable
+    }
 
     @RequiresApi(Build.VERSION_CODES.M)
-    private fun controlGame(playerSatu: CharSequence, com: CharSequence) {
+    override fun checkGame(text: Int, background: Int, textColor: Int) {
+        binding.tvVS.text = getString(text)
+        binding.tvVS.setBackgroundColor(getColor(background))
+        binding.tvVS.setTextColor(textColor)
+    }
+
+
+//    private fun controlGame(playerSatu: CharSequence, com: CharSequence) {
 //        if (playerSatu == com) {
 ////            tv_VS.text = "Draw"
 //            tvVS.setBackgroundResource(R.drawable.bg_draw)
@@ -112,7 +124,7 @@ class MainActivity : AppCompatActivity(), Callback {
 //        Log.d("hasil", "$playerSatu VS $com")
 
 
-    }
+//    }
 
 //    private fun notklikPemain(gunting: ImageView, kertas: ImageView, batu: ImageView) {
 //        batu.isEnabled = false
@@ -128,18 +140,6 @@ class MainActivity : AppCompatActivity(), Callback {
 //
 //    }
 
-    private fun notClick(isEnable: Boolean) {
-        binding.batup1.isEnabled = isEnable
-        binding.kertasp1.isEnabled = isEnable
-        binding.guntingp1.isEnabled = isEnable
-    }
-
-    @RequiresApi(Build.VERSION_CODES.M)
-    override fun checkGame(text: Int, background: Int, textColor: Int) {
-        binding.tvVS.text = getString(text)
-        binding.tvVS.setBackgroundColor(getColor(background))
-        binding.tvVS.setTextColor(textColor)
-    }
 
 }
 
